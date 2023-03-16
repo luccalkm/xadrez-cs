@@ -1,0 +1,15 @@
+C:\Users\lmotta\Desktop\bckup_trabalho\dotnet\XadrezConsole\XadrezConsole\XadrezConsole\bin\Debug\net6.0\XadrezConsole.exe
+C:\Users\lmotta\Desktop\bckup_trabalho\dotnet\XadrezConsole\XadrezConsole\XadrezConsole\bin\Debug\net6.0\XadrezConsole.deps.json
+C:\Users\lmotta\Desktop\bckup_trabalho\dotnet\XadrezConsole\XadrezConsole\XadrezConsole\bin\Debug\net6.0\XadrezConsole.runtimeconfig.json
+C:\Users\lmotta\Desktop\bckup_trabalho\dotnet\XadrezConsole\XadrezConsole\XadrezConsole\bin\Debug\net6.0\XadrezConsole.dll
+C:\Users\lmotta\Desktop\bckup_trabalho\dotnet\XadrezConsole\XadrezConsole\XadrezConsole\bin\Debug\net6.0\XadrezConsole.pdb
+C:\Users\lmotta\Desktop\bckup_trabalho\dotnet\XadrezConsole\XadrezConsole\XadrezConsole\obj\Debug\net6.0\XadrezConsole.csproj.AssemblyReference.cache
+C:\Users\lmotta\Desktop\bckup_trabalho\dotnet\XadrezConsole\XadrezConsole\XadrezConsole\obj\Debug\net6.0\XadrezConsole.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lmotta\Desktop\bckup_trabalho\dotnet\XadrezConsole\XadrezConsole\XadrezConsole\obj\Debug\net6.0\XadrezConsole.AssemblyInfoInputs.cache
+C:\Users\lmotta\Desktop\bckup_trabalho\dotnet\XadrezConsole\XadrezConsole\XadrezConsole\obj\Debug\net6.0\XadrezConsole.AssemblyInfo.cs
+C:\Users\lmotta\Desktop\bckup_trabalho\dotnet\XadrezConsole\XadrezConsole\XadrezConsole\obj\Debug\net6.0\XadrezConsole.csproj.CoreCompileInputs.cache
+C:\Users\lmotta\Desktop\bckup_trabalho\dotnet\XadrezConsole\XadrezConsole\XadrezConsole\obj\Debug\net6.0\XadrezConsole.dll
+C:\Users\lmotta\Desktop\bckup_trabalho\dotnet\XadrezConsole\XadrezConsole\XadrezConsole\obj\Debug\net6.0\refint\XadrezConsole.dll
+C:\Users\lmotta\Desktop\bckup_trabalho\dotnet\XadrezConsole\XadrezConsole\XadrezConsole\obj\Debug\net6.0\XadrezConsole.pdb
+C:\Users\lmotta\Desktop\bckup_trabalho\dotnet\XadrezConsole\XadrezConsole\XadrezConsole\obj\Debug\net6.0\XadrezConsole.genruntimeconfig.cache
+C:\Users\lmotta\Desktop\bckup_trabalho\dotnet\XadrezConsole\XadrezConsole\XadrezConsole\obj\Debug\net6.0\ref\XadrezConsole.dll
