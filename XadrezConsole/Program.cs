@@ -7,11 +7,8 @@ class Program
 {
     static void Main(string[] args)
     {
-        Board Board = new Board();
-
-        Board.SetPiecePosition(new Tower(Color.White, Board), new Position(0, 0));
-
-
-        Screen.PrintBoard(Board);
+        ChessPosition chessPos = new ChessPosition('a', 2);
+        Console.WriteLine(chessPos);
+        Console.WriteLine(chessPos.ConvertToMatrixPosition());
     }
 }
