@@ -1,4 +1,4 @@
-﻿using XadrezConsole.TabuleiroNS;
+﻿using XadrezConsole.BoardNS;
 using XadrezConsole;
 using XadrezConsole.Xadrez;
 
@@ -7,10 +7,11 @@ class Program
 {
     static void Main(string[] args)
     {
-        Tabuleiro tabuleiro = new Tabuleiro();
+        Board Board = new Board();
 
-        tabuleiro.ColocarPeca(new Torre(Cor.Branca, tabuleiro), new Posicao(0, 0));
+        Board.SetPiecePosition(new Tower(Color.White, Board), new Position(0, 0));
 
-        Tela.ImprimirTabuleiro(tabuleiro);
+
+        Screen.PrintBoard(Board);
     }
 }
