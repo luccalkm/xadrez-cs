@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = XadrezConsole
-build_property.ProjectDir = C:\Users\lmotta\Desktop\bckup_trabalho\dotnet\XadrezConsole\XadrezConsole\XadrezConsole\
+build_property.ProjectDir = C:\tmp\projetos\xadrez-cs\XadrezConsole\

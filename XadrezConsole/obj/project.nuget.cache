@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Rf9cnCEPCcKKCfS97Y4BkYHHsNhshPob81yx1mMCyCmQboEkmikYmbnPRXeWbVuGdMEDpTGvGJkz0RLz61t5YQ==",
+  "dgSpecHash": "h8dOYnAFcexmwj273JrWmcbhNAKfEfcR0et1lRGQcSWg77mN1fDdntVYKW9rbprTEjcLIxnsauyEgdef/NKjAQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lmotta\\Desktop\\bckup_trabalho\\dotnet\\XadrezConsole\\XadrezConsole\\XadrezConsole\\XadrezConsole.csproj",
+  "projectFilePath": "C:\\tmp\\projetos\\xadrez-cs\\XadrezConsole\\XadrezConsole.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
