@@ -1,15 +1,9 @@
-﻿namespace XadrezConsole.BoardNS
+﻿namespace ConsoleChess.BoardNS
 {
     class Board
     {
-        public int Lines
-        {
-            get; set;
-        }
-        public int Columns
-        {
-            get; set;
-        }
+        public int Lines { get; set;}
+        public int Columns{ get; set; }
         private Piece[,] _pieces;
 
         public Board(int lines, int columns)
@@ -30,6 +24,7 @@
             return _pieces[pos.Line, pos.Column];
         }
 
+        #region PieceValidation
         public bool ExistsPiece(Position pos)
         {
             CheckPosition(pos);
@@ -52,8 +47,9 @@
                 throw new BoardException("\nPosition out of bounds of the board!\n");
             }
         }
+        #endregion
 
-        public void SetPiecePosition(Piece p, Position pos)
+        public void MovePieceOnBoard(Piece p, Position pos)
         {
             if (ExistsPiece(pos))
             {
@@ -61,6 +57,18 @@
             }
             _pieces[pos.Line, pos.Column] = p;
             p.Position = pos;
+        }
+
+        public Piece RemovePieceFromBoard(Position pos)
+        {
+            if(AccessPiece(pos) == null)
+            {
+                return null;
+            }
+            Piece foundPiece = AccessPiece(pos);
+            foundPiece.Position = null;
+            _pieces[pos.Line, pos.Column] = null;
+            return foundPiece;
         }
     }
 }

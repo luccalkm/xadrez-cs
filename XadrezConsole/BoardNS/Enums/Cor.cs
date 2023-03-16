@@ -1,4 +1,4 @@
-﻿namespace XadrezConsole.BoardNS;
+﻿namespace ConsoleChess.BoardNS;
 enum Color
 {
     White,

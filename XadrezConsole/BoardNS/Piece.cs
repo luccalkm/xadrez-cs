@@ -1,4 +1,6 @@
-﻿namespace XadrezConsole.BoardNS;
+﻿using System.Drawing;
+
+namespace ConsoleChess.BoardNS;
 class Piece
 {
     public Position Position { get; set; }
@@ -6,7 +8,7 @@ class Piece
     public int MoveAmount { get; protected set; }
     public Board Board { get; protected set; }
 
-    public Piece(Color color, Board board)
+    public Piece(Board board, Color color)
     {
         Position = null;
         Color = color;
@@ -14,8 +16,13 @@ class Piece
         MoveAmount = 0;
     }
 
-    public virtual char PrintPiece()
+    public void IncrementMoveAmount()
     {
-        return '.';
+        MoveAmount++;
+    }
+
+    public virtual string PrintPiece()
+    {
+        return ". ";
     }
 }

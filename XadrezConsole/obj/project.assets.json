@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\tmp\\projetos\\xadrez-cs\\XadrezConsole\\XadrezConsole.csproj",
-      "projectName": "XadrezConsole",
-      "projectPath": "C:\\tmp\\projetos\\xadrez-cs\\XadrezConsole\\XadrezConsole.csproj",
+      "projectUniqueName": "C:\\tmp\\projetos\\xadrez-cs\\XadrezConsole\\ConsoleChess.csproj",
+      "projectName": "ConsoleChess",
+      "projectPath": "C:\\tmp\\projetos\\xadrez-cs\\XadrezConsole\\ConsoleChess.csproj",
       "packagesPath": "C:\\Users\\lucca\\.nuget\\packages\\",
       "outputPath": "C:\\tmp\\projetos\\xadrez-cs\\XadrezConsole\\obj\\",
       "projectStyle": "PackageReference",
