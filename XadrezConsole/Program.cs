@@ -10,21 +10,34 @@ class Program
         Match match = new Match();
         while(!match.isMatchOver)
         {
-            Console.Clear();
-            Screen.PrintBoard(match.Board);
-            Console.Write("\nOrigin position: ");
-            Position origin = Screen.ReadChessPosition().ConvertToMatrixPosition();
+            try
+            {
+                Console.Clear();
+                Screen.PrintBoard(match.Board);
+                Console.Write($"\nRound #{match.Round}");
+                Console.Write($"\n{match.CurrentPlayerColor}'s turn.");
+                Console.Write("\n\nOrigin position: ");
+                Position origin = Screen.ReadChessPosition().ConvertToMatrixPosition();
+                match.ValidateOriginPosition( origin );
 
-            // Access Possible Movements of piece
-            bool[,] possiblePositions = match.Board.AccessPiece(origin).PossibleMovements();
+                // Access Possible Movements of piece
+                bool[,] possiblePositions = match.Board.AcessPieceAt(origin).PossibleMovements();
 
-            Console.Clear();
-            Screen.PrintBoard(match.Board, possiblePositions);
+                Console.Clear();
+                Screen.PrintBoard(match.Board, possiblePositions);
+                Screen.PrintMatrixes(possiblePositions);
 
-            Console.Write("\nDestination: ");
-            Position destination = Screen.ReadChessPosition().ConvertToMatrixPosition();
+                Console.Write("\nDestination: ");
+                Position destination = Screen.ReadChessPosition().ConvertToMatrixPosition();
+                match.ValidateDestinationPosition(origin, destination);
 
-            match.ExecuteMove(origin, destination);
+                match.ExecuteMove(origin, destination);
+            }
+            catch (BoardException e)
+            {
+                Console.WriteLine(e.Message + "\nPress any key to try again.");
+                Console.ReadKey();
+            }
         }
     }
 }
