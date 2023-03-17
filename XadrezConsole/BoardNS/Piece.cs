@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+﻿using System.Linq;
 
 namespace ConsoleChess.BoardNS;
 abstract class Piece
@@ -21,13 +21,24 @@ abstract class Piece
         MoveAmount++;
     }
 
-    protected bool CanMove(Position desiredPosition)
+    protected bool ValidatePosition(Position desiredPosition)
     {
-        Piece p = Board.AccessPiece(desiredPosition);
+        Piece p = Board.AcessPieceAt(desiredPosition);
         return p == null || p.Color != Color;
     }
 
     public abstract bool[,] PossibleMovements();
+
+    public bool CanMove()
+    {
+        return PossibleMovements().Cast<bool>().Any(x => x);
+    }
+
+    public bool CanMoveTo(Position destination)
+    {
+        Board.CheckPosition(destination);
+        return PossibleMovements()[destination.Line, destination.Column];
+    }
 
     public virtual string PrintPiece()
     {

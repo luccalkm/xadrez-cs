@@ -13,66 +13,33 @@ namespace ConsoleChess.Chess
             bool[,] mat = new bool[Board.Lines, Board.Columns];
             Position pos = new Position(0,0);
 
-            // Check upwards
-            pos.DefineValuesToPosition(Position.Line - 1, Position.Column);
-            while (Board.ValidatePosition(pos))
-            {
-                if (CanMove(pos))
-                {
-                    mat[pos.Line, pos.Column] = true;
-                }
-                if (Board.AccessPiece(pos) != null)
-                {
-                    break;
-                }
-                pos.Line--;
-            }
+            int[,] directions = new int[,] { 
+                 { -1, 0 }      // UP
+                ,{ 1, 0 }       // DOWN
+                ,{ 0, 1 }       // RIGHT
+                ,{ 0, -1 }      // LEFT
+            };
 
-            // Check downwards
-            pos.DefineValuesToPosition(Position.Line + 1, Position.Column);
-            while (Board.ValidatePosition(pos))
+            for (int i = 0; i < directions.GetLength(0); i++)
             {
-                if (CanMove(pos))
-                {
-                    mat[pos.Line, pos.Column] = true;
-                }
-                if (Board.AccessPiece(pos) != null)
-                {
-                    break;
-                }
-                pos.Line++;
-            }
+                int dirX = directions[i,0];
+                int dirY = directions[i,1];
 
-            // Check to the left
-            pos.DefineValuesToPosition(Position.Line, Position.Column - 1);
-            while (Board.ValidatePosition(pos))
-            {
-                if (CanMove(pos))
+                pos.DefineValuesToPosition(Position.Line + dirX, Position.Column + dirY);
+                while (Board.ValidateChessBounds(pos))
                 {
-                    mat[pos.Line, pos.Column] = true;
+                    if (ValidatePosition(pos))
+                    {
+                        mat[pos.Line, pos.Column] = true;
+                    }
+                    if (Board.AcessPieceAt(pos) != null)
+                    {
+                        break;
+                    }
+                    pos.Line += dirX;
+                    pos.Column += dirY;
                 }
-                if (Board.AccessPiece(pos) != null)
-                {
-                    break;
-                }
-                pos.Column--;
             }
-
-            // Check to the right
-            pos.DefineValuesToPosition(Position.Line, Position.Column + 1);
-            while (Board.ValidatePosition(pos))
-            {
-                if (CanMove(pos))
-                {
-                    mat[pos.Line, pos.Column] = true;
-                }
-                if (Board.AccessPiece(pos) != null)
-                {
-                    break;
-                }
-                pos.Column++;
-            }
-
 
             return mat;
         }

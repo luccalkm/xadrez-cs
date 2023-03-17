@@ -14,18 +14,13 @@ namespace ConsoleChess.Chess
         {
             bool[,] mat = new bool[Board.Lines, Board.Columns];
             Position pos = new Position(0, 0);
-            
+
             for (int i = -1; i <= 1; i++)
             {
-                for (int j = -1; j < 1; j++)
+                for (int j = -1; j <= 1; j++)
                 {
-                    if (!(i == j))
-                    {
-                        continue;
-                    }
-
-                    pos.DefineValuesToPosition(pos.Line + i, pos.Column + j);
-                    if (Board.ValidatePosition(pos) && CanMove(pos))
+                    pos.DefineValuesToPosition(Position.Line + i, Position.Column + j);
+                    if (Board.ValidateChessBounds(pos) && ValidatePosition(pos))
                     {
                         mat[pos.Line, pos.Column] = true;
                     }

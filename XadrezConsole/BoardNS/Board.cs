@@ -14,13 +14,15 @@
         }
 
         // Access Piece through line and col
-        public Piece AccessPiece(int line, int column)
+        public Piece AcessPieceAt(int line, int column)
         {
+            CheckPosition(new Position(line, column));
             return _pieces[line, column];
         }
         // Access Piece through position
-        public Piece AccessPiece(Position pos)
+        public Piece AcessPieceAt(Position pos)
         {
+            CheckPosition(pos);
             return _pieces[pos.Line, pos.Column];
         }
 
@@ -28,10 +30,10 @@
         public bool ExistsPiece(Position pos)
         {
             CheckPosition(pos);
-            return AccessPiece(pos) != null;
+            return AcessPieceAt(pos) != null;
         }
 
-        public bool ValidatePosition(Position pos)
+        public bool ValidateChessBounds(Position pos)
         {
             if (pos.Line < 0 || pos.Column < 0 || pos.Line >= Lines || pos.Column >= Lines)
             {
@@ -42,9 +44,9 @@
 
         public void CheckPosition(Position pos)
         {
-            if (!ValidatePosition(pos))
+            if (!ValidateChessBounds(pos))
             {
-                throw new BoardException("\nPosition out of bounds of the board!\n");
+                throw new BoardException("\nPosition is out of bounds!");
             }
         }
         #endregion
@@ -61,11 +63,11 @@
 
         public Piece RemovePieceFromBoard(Position pos)
         {
-            if(AccessPiece(pos) == null)
+            if(AcessPieceAt(pos) == null)
             {
                 return null;
             }
-            Piece foundPiece = AccessPiece(pos);
+            Piece foundPiece = AcessPieceAt(pos);
             foundPiece.Position = null;
             _pieces[pos.Line, pos.Column] = null;
             return foundPiece;
