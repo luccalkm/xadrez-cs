@@ -1,10 +1,44 @@
 ﻿using ConsoleChess.BoardNS;
 using ConsoleChess.Chess;
+using System.Collections.Generic;
 
 namespace ConsoleChess
 {
     class Screen
     {
+        // Print 
+        public static void PrintMatch(Match match)
+        {
+            PrintBoard(match.Board);
+            PrintCapturedPieces(match);
+            Console.Write($"\nRound #{match.Round}");
+            Console.Write($"\n{match.CurrentPlayerColor}'s turn.");
+            Console.Write("\n\nOrigin position: ");
+        }
+
+        public static void PrintCapturedPieces(Match match)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("════════════════════════════");
+            Console.WriteLine(" Captured Pieces: ");
+            Console.Write($" White: "); 
+            PrintGroup(match.GetCapturedPieces(Color.White));
+            Console.Write($" Black: "); 
+            PrintGroup(match.GetCapturedPieces(Color.Black));
+            Console.WriteLine("════════════════════════════");
+            Console.ResetColor();
+        }
+
+        public static void PrintGroup(HashSet<Piece> pieces)
+        {
+            Console.Write("[");
+            foreach(Piece p in pieces)
+            {
+                Console.Write(p.GetPieceName() + " ");
+            }
+            Console.Write("]\n");
+        }
+
         public static void PrintBoard(Board Board)
         {
             for (int i = 0; i < Board.Lines; i++) 
@@ -20,7 +54,7 @@ namespace ConsoleChess
                 for (int j = 0; j < Board.Columns; j++) 
                 {
                     PrintBoardBackgroundColor(i, j);
-                    PrintPiece(Board.AcessPieceAt(i, j));
+                    GetPieceName(Board.AcessPieceAt(i, j));
                 }
                 Console.WriteLine();
             }
@@ -50,14 +84,14 @@ namespace ConsoleChess
                     {
                         PrintBoardBackgroundColor(i, j);
                     }
-                    PrintPiece(Board.AcessPieceAt(i, j));
+                    GetPieceName(Board.AcessPieceAt(i, j));
                 }
                 Console.WriteLine();
                 Console.BackgroundColor = ConsoleColor.Black;
             }
         }
 
-        public static void PrintPiece(Piece piece)
+        public static void GetPieceName(Piece piece)
         {
             // Print piece or blank
             if (piece == null)
@@ -73,7 +107,7 @@ namespace ConsoleChess
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Black;
-                    Console.Write(piece.PrintPiece() + " ");
+                    Console.Write(piece.GetPieceName() + " ");
                     Console.ResetColor();
                 }
             }
@@ -83,7 +117,7 @@ namespace ConsoleChess
         private static void ChangePieceColor(Piece piece, ConsoleColor consoleColor)
         {
             Console.ForegroundColor = consoleColor;
-            Console.Write(piece.PrintPiece() + " ");
+            Console.Write(piece.GetPieceName() + " ");
             Console.ResetColor();
         }
 

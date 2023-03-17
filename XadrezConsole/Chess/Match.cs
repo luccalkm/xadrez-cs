@@ -1,4 +1,9 @@
 ﻿using ConsoleChess.BoardNS;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Data.Common;
+using System.Security.Cryptography.X509Certificates;
+
 namespace ConsoleChess.Chess
 {
     class Match
@@ -7,6 +12,8 @@ namespace ConsoleChess.Chess
         public int Round { get; private set; }
         public Color CurrentPlayerColor { get; private set; }
         public bool isMatchOver;
+        private HashSet<Piece> _pieces;
+        private HashSet<Piece> _capturedPieces;
 
         public Match()
         {
@@ -14,6 +21,8 @@ namespace ConsoleChess.Chess
             Board = new Board(8, 8);
             Round = 1;
             CurrentPlayerColor = Color.White;
+            _pieces = new HashSet<Piece>();
+            _capturedPieces = new HashSet<Piece>();
             PlacePiecesOnBoard();
         }
 
@@ -21,8 +30,12 @@ namespace ConsoleChess.Chess
         {
             Piece piece = Board.RemovePieceFromBoard(origin);
             piece.IncrementMoveAmount();
-            // Piece capturedPiece = Board.RemovePieceFromBoard(target);
-            Board.MovePieceOnBoard(piece, target);
+            Piece capturedPiece = Board.RemovePieceFromBoard(target);
+            Board.DefinePiecePosition(piece, target);
+            if (capturedPiece != null)
+            {
+                _capturedPieces.Add(capturedPiece);
+            }
         }
 
         public void ExecuteMove(Position origin, Position target)
@@ -30,32 +43,6 @@ namespace ConsoleChess.Chess
             SwitchPiecePosition(origin, target);
             Round++;
             SwitchPlayerTurn();
-        }
-
-        public void ValidateOriginPosition(Position origin)
-        {
-            if(Board.AcessPieceAt(origin) == null)
-            {
-                throw new BoardException("This position is empty!");
-            }
-
-            if (CurrentPlayerColor != Board.AcessPieceAt(origin).Color)
-            {
-                throw new BoardException($"Its not {CurrentPlayerColor}'s turn!");
-            }
-            
-            if (!Board.AcessPieceAt(origin).CanMove())
-            {
-                throw new BoardException("No available moves to this piece!");
-            }
-        }
-
-        public void ValidateDestinationPosition(Position origin, Position destination)
-        {
-            if (!Board.AcessPieceAt(origin).CanMoveTo(destination))
-            {
-                throw new BoardException("Destination position is invalid.");
-            }
         }
 
         public void SwitchPlayerTurn()
@@ -70,13 +57,77 @@ namespace ConsoleChess.Chess
             }
         }
 
+        public HashSet<Piece> GetCapturedPieces(Color color)
+        {
+            HashSet<Piece> newCapturedPieces = new();
+            foreach ( Piece p in _capturedPieces )
+            {
+                if (p.Color == color)
+                {
+                    newCapturedPieces.Add(p);
+                }
+            }
+            return newCapturedPieces;
+        }
+        public HashSet<Piece> GetAlivePieces(Color color)
+        {
+            HashSet<Piece> newPieces = new();
+            foreach (Piece p in _pieces)
+            {
+                if (p.Color == color)
+                {
+                    newPieces.Add(p);
+                }
+            }
+
+            newPieces.ExceptWith(GetCapturedPieces(color));
+
+            return newPieces;
+        }
+
+        #region Validations
+        public void ValidateOriginPosition(Position origin)
+        {
+            if (Board.AcessPieceAt(origin) == null)
+            {
+                throw new BoardException("This position is empty!");
+            }
+
+            if (CurrentPlayerColor != Board.AcessPieceAt(origin).Color)
+            {
+                throw new BoardException($"Its not {CurrentPlayerColor}'s turn!");
+            }
+
+            if (!Board.AcessPieceAt(origin).CanMove())
+            {
+                throw new BoardException("No available moves to this piece!");
+            }
+        }
+
+        public void ValidateDestinationPosition(Position origin, Position destination)
+        {
+            if (!Board.AcessPieceAt(origin).CanMoveTo(destination))
+            {
+                throw new BoardException("Destination position is invalid.");
+            }
+        }
+        #endregion
+
+        #region Creating pieces
+        public void CreateNewPiece(char column, int line, Piece piece)
+        {
+            Board.DefinePiecePosition(piece, new ChessPosition(column, line).ConvertToMatrixPosition());
+            _pieces.Add(piece);
+        }
+
         private void PlacePiecesOnBoard()
         {
-            Board.MovePieceOnBoard(new King(Board, Color.Black), new ChessPosition('a', 1).ConvertToMatrixPosition());
-            Board.MovePieceOnBoard(new Tower(Board, Color.Black), new ChessPosition('a', 2).ConvertToMatrixPosition());
-            Board.MovePieceOnBoard(new Tower(Board, Color.Black), new ChessPosition('b', 1).ConvertToMatrixPosition());
-            Board.MovePieceOnBoard(new Tower(Board, Color.Black), new ChessPosition('b', 2).ConvertToMatrixPosition());
-            Board.MovePieceOnBoard(new Tower(Board, Color.White), new ChessPosition('b', 7).ConvertToMatrixPosition());
+            CreateNewPiece('a', 1, new King(Board, Color.Black));
+            CreateNewPiece('a', 2, new Tower(Board, Color.Black));
+            CreateNewPiece('b', 1, new Tower(Board, Color.Black));
+            CreateNewPiece('b', 2, new Tower(Board, Color.Black));
+            CreateNewPiece('b', 7, new Tower(Board, Color.White));
         }
+        #endregion
     }
 }

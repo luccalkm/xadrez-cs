@@ -10,22 +10,20 @@ class Program
         Match match = new Match();
         while(!match.isMatchOver)
         {
+            Console.Clear();
             try
             {
-                Console.Clear();
-                Screen.PrintBoard(match.Board);
-                Console.Write($"\nRound #{match.Round}");
-                Console.Write($"\n{match.CurrentPlayerColor}'s turn.");
-                Console.Write("\n\nOrigin position: ");
+                Screen.PrintMatch(match);
                 Position origin = Screen.ReadChessPosition().ConvertToMatrixPosition();
-                match.ValidateOriginPosition( origin );
+                match.ValidateOriginPosition(origin);
 
                 // Access Possible Movements of piece
                 bool[,] possiblePositions = match.Board.AcessPieceAt(origin).PossibleMovements();
 
                 Console.Clear();
                 Screen.PrintBoard(match.Board, possiblePositions);
-                Screen.PrintMatrixes(possiblePositions);
+
+                //Screen.PrintMatrixes(possiblePositions);
 
                 Console.Write("\nDestination: ");
                 Position destination = Screen.ReadChessPosition().ConvertToMatrixPosition();

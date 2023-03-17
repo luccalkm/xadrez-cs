@@ -40,7 +40,7 @@ abstract class Piece
         return PossibleMovements()[destination.Line, destination.Column];
     }
 
-    public virtual string PrintPiece()
+    public virtual string GetPieceName()
     {
         return ". ";
     }

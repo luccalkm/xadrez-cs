@@ -44,7 +44,7 @@ namespace ConsoleChess.Chess
             return mat;
         }
 
-        public override string PrintPiece()
+        public override string GetPieceName()
         {
             return " T";
         }
