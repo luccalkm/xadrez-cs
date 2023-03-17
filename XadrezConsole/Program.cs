@@ -14,6 +14,13 @@ class Program
             Screen.PrintBoard(match.Board);
             Console.Write("\nOrigin position: ");
             Position origin = Screen.ReadChessPosition().ConvertToMatrixPosition();
+
+            // Access Possible Movements of piece
+            bool[,] possiblePositions = match.Board.AccessPiece(origin).PossibleMovements();
+
+            Console.Clear();
+            Screen.PrintBoard(match.Board, possiblePositions);
+
             Console.Write("\nDestination: ");
             Position destination = Screen.ReadChessPosition().ConvertToMatrixPosition();
 

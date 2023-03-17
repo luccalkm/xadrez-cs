@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 
 namespace ConsoleChess.BoardNS;
-class Piece
+abstract class Piece
 {
     public Position Position { get; set; }
     public Color Color { get; protected set; }
@@ -20,6 +20,14 @@ class Piece
     {
         MoveAmount++;
     }
+
+    protected bool CanMove(Position desiredPosition)
+    {
+        Piece p = Board.AccessPiece(desiredPosition);
+        return p == null || p.Color != Color;
+    }
+
+    public abstract bool[,] PossibleMovements();
 
     public virtual string PrintPiece()
     {
