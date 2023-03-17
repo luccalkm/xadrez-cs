@@ -6,9 +6,11 @@ namespace ConsoleChess.Chess
         public Board Board { get; set; }
         private int _round;
         private Color _player;
+        public bool isMatchOver;
 
         public Match()
         {
+            isMatchOver = false;
             Board = new Board(8, 8);
             _round = 1;
             _player = Color.White;

@@ -1,4 +1,5 @@
 ﻿using ConsoleChess.BoardNS;
+using ConsoleChess.Chess;
 
 namespace ConsoleChess
 {
@@ -43,6 +44,14 @@ namespace ConsoleChess
                 Console.Write(piece.PrintPiece() + " ");
                 Console.ResetColor();
             }
+        }
+
+        public static ChessPosition ReadChessPosition()
+        {
+            string s = Console.ReadLine().Trim().ToLower();
+            char column = s[0];
+            int line = int.Parse(s[1] + "");
+            return new ChessPosition(column, line);
         }
     }
 }

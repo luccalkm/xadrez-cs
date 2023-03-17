@@ -8,6 +8,16 @@ class Program
     static void Main(string[] args)
     {
         Match match = new Match();
-        Screen.PrintBoard(match.Board);
+        while(!match.isMatchOver)
+        {
+            Console.Clear();
+            Screen.PrintBoard(match.Board);
+            Console.Write("\nOrigin position: ");
+            Position origin = Screen.ReadChessPosition().ConvertToMatrixPosition();
+            Console.Write("\nDestination: ");
+            Position destination = Screen.ReadChessPosition().ConvertToMatrixPosition();
+
+            match.ExecuteMove(origin, destination);
+        }
     }
 }
