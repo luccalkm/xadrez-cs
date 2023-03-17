@@ -85,6 +85,15 @@ namespace ConsoleChess.Chess
             return newPieces;
         }
 
+        private Color OppositeColor(Color color)
+        {
+            if (color == Color.White)
+            {
+                return Color.Black;
+            }
+            return Color.White;
+        }
+        
         #region Validations
         public void ValidateOriginPosition(Position origin)
         {
