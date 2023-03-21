@@ -51,7 +51,7 @@
         }
         #endregion
 
-        public void DefinePiecePosition(Piece p, Position pos)
+        public void MovePieceTo(Piece p, Position pos)
         {
             if (ExistsPiece(pos))
             {

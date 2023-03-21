@@ -21,6 +21,11 @@ abstract class Piece
         MoveAmount++;
     }
 
+    public void DescreaseMoveAmount()
+    {
+        MoveAmount--;
+    }
+
     protected bool ValidatePosition(Position desiredPosition)
     {
         Piece p = Board.AcessPieceAt(desiredPosition);
