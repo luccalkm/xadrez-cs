@@ -26,6 +26,10 @@ namespace ConsoleChess
             Console.Write($" Black: "); 
             PrintGroup(match.GetCapturedPieces(Color.Black));
             Console.WriteLine("════════════════════════════");
+            if (match.Check)
+            {
+                Console.WriteLine($" {match.CurrentPlayerColor} King is checked!");
+            }
             Console.ResetColor();
         }
 
